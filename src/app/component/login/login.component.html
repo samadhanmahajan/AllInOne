@@ -1,0 +1,50 @@
+<div class="main" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card class="maincard" style="height: 65vh ;width: 257px;">
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <div>
+        <mat-card-title>
+          <h2>FundooNotes</h2>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <h1>Login</h1>
+        </mat-card-subtitle>
+      </div>
+      <div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="emailId" [formControl]="emailId"[(ngModel)]="login.emailId">
+          
+          <mat-error *ngIf="emailId.invalid">please enter valid emailID!!!</mat-error>
+         
+ 
+          <!-- <label *ngIf="emailId.invalid" [ngClass] = "'error'"> Email is not correct. </label>
+  -->
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Enter your password" [formControl]="password"  [(ngModel)]="login.password"
+            [type]="hide ? 'password' : 'text'"  pattern="((?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})">
+
+            <mat-error *ngIf="emailId.invalid">please enter valid password!!!</mat-error>
+
+          <mat-icon matSuffix (click)="hide= !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="spcace-between center">
+        <button style="margin-right: 45px" mat-flat-button color="primary" (click)="onLogin()" [disabled]='emailId.invalid'[disabled]='password.invalid' >login</button>
+        <button style="margin-left: 44px" mat-flat-button color="primary" routerLink="/register">register</button>
+
+      </div>
+      <!-- <div fxLayout="column" fxLayoutAlign="space-between center"> -->
+      <a style="margin-left: -104px;
+          margin-top: 16px;" href="forgotpassword" routerLink="/forgotpassword">Forgot-Password</a>
+
+      <!-- </div> -->
+    </div>
+  </mat-card>
+</div>

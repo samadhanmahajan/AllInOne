@@ -1,0 +1,11 @@
+<div class="mainCard" *ngFor="let item of notesList">
+    <div>
+        <mat-card [ngStyle]="{'background-color':item.colour}">
+            <p>{{item.title}}</p>
+            <p> {{item.description}}</p>
+            <div fxLayout="row" fxLayoutAlign="start">
+                <app-icons [noteInfo]="item"></app-icons>
+            </div>
+        </mat-card>
+    </div>
+</div>

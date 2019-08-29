@@ -1,0 +1,53 @@
+.search-bar
+{
+    display: block;
+    position: relative;
+    padding: 8px;
+    width: 550px;
+    margin-left: 100px;
+    color: inherit;
+    height: 36px;
+    //border-radius: 20px; 
+}
+
+.search
+{
+    width: 450px; 
+    border: transparent;
+    outline: none;
+    border-color: #f1f3f4;
+    width: 512px;
+    height: 39px;
+}
+.fundoo
+{
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    max-width: 5%;
+    margin-top: 8px;
+}
+
+
+.example-container 
+{
+    height: 100vh;
+    width: 100%;
+}
+  
+.example-sidenav-content
+{ 
+    width: 250px;
+}
+.button
+{
+        /* margin-bottom: -21px; */
+        margin-top: 16px;
+        /* margin-right: -10px; */
+        margin-left: 27px;
+}
+
+.label
+{
+    width: 238px;
+    border-radius: 20px
+}

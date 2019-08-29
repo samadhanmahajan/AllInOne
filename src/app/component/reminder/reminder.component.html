@@ -1,0 +1,14 @@
+<div class="mainCard" *ngFor="let item of noteList" fxLayoutGap="10px">
+    <mat-card style="margin-left: 100px;"   [ngStyle]="{'background-color':item.colour}">
+
+        <div (click)="openDialog(item)">
+            <p>{{item.title}}</p>
+            <p> {{item.description}}</p>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start">
+            <app-icons [noteInfo]="item"> </app-icons>
+        </div>
+    </mat-card>
+
+</div>

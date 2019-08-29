@@ -1,0 +1,42 @@
+
+<h4 style="margin-top: -9px;margin-left: -12px;">Edit Lables</h4>
+<div fxLayout="row" FxLayoutAlign="start start">
+
+    <button mat-button style="margin-top: 17px;margin-bottom: 8px;width: 135px;
+        margin-left: -19px;height: 0px;">
+        <mat-icon matTooltip="clear">clear</mat-icon>
+
+    </button>
+    <form [formGroup]="labelForm">
+        <mat-form-field style="width: 100px;">
+            <input matInput placeholder="enter label" formControlName="labelName" [(ngModel)]="label.labelName">
+        </mat-form-field>
+
+        <div *ngFor="let item of labelsList" fxLayout="row">
+
+            <button mat-button style="margin-top: 17px;margin-bottom: 8px;width: 135px;margin-left: -99px;height: 0px;"
+                (click)="deleteLabel(item)">
+                <mat-icon matTooltip="clear">clear</mat-icon>
+
+            </button>
+            <mat-form-field style="width: 100px;margin-left: -33px;">
+                <input matInput value="{{item.labelName}}" placeholder="enter label" formControlName="labelName">
+            </mat-form-field>
+            <button mat-button style="margin-top: 18px;height: 0px;" (click)="updateLabel(item)">
+                <mat-icon matTooltip="done">done</mat-icon>
+
+            </button>
+        </div>
+
+    </form>
+    <button mat-button style="margin-left: -64px;margin-top: 18px;height: 0px;">
+        <mat-icon matTooltip="done">done</mat-icon>
+
+    </button>
+
+
+</div>
+
+
+
+<button mat-button style="margin-left: 160px;margin-top: 80px;" (click)="editLabel()">Done</button>

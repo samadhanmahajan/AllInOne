@@ -1,0 +1,28 @@
+<mat-card-content fxLayout="column" fxLayoutAlign="start start" >
+    <div fxLayout="column" fxLayoutAlign="start start">
+        <div>{{this.emailId}} owner</div>
+        <div style="padding-top:2%;" fxLayout="column" fxLayoutAlign="start center">
+
+
+            <div style="padding-left:2%;" fxLayout="row" *ngFor="let  collabUser of collaboratedUsers">
+                <mat-icon>account_circle</mat-icon>
+                {{collabUser.emailId}}
+                <button mat-button
+                    style="margin-top: -8px;margin-bottom: 8px;width: 40px;margin-left: -15px;height: 0px;"
+                    (click)="removeCollaborator(collabUser)">
+                    <mat-icon matTooltip="clear">clear</mat-icon>
+
+                </button>
+            </div>
+            <div style="padding-left:5%;padding-bottom: 1%;">
+                <input matInput placeholder="Person or email to share with" [(ngModel)]="collaborator.emailId">
+            </div>
+
+        </div>
+
+        <div>
+            <button style="margin-left: 125px;" mat-button (click)="collaborateNote()">Close</button>
+        </div>
+
+    </div>
+</mat-card-content>

@@ -1,0 +1,31 @@
+<div fxLayout="column" fxLayoutAlign="center">
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:-30px;">
+        <mat-card fxLayout="row" fxLayoutAlign="center center" fxFlex="40" (click)="showBar()" *ngIf="!showAddNote"
+            style="border-radius: px;">
+            <input style="height: 10px" mat-input class="notes" placeholder="Take a note....">
+        </mat-card>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex="60">
+        <form [formGroup] = "createForm">
+            <mat-card fxLayout="column" fxLayoutAlign="start start" *ngIf="showAddNote" fxFlex="40" class="maincard"
+                style="max-width: 75%;width: 950px;margin-left: 445px;">
+                <input mat-input class="title" placeholder="Title" formControlName="title">
+                <input loginmat-input class="notes" placeholder="Take a note...." formControlName="description">
+                <div fxLayout="row" fxLayoutAlign=" start center" class="icon" fxLayoutGap="25px">
+                    <mat-icon matTooltip="Remind me">add_alert</mat-icon>
+                    <mat-icon matTooltip="Collaborator">person_add</mat-icon>
+                    <mat-icon matTooltip="Change color">color_lens</mat-icon>
+                    <mat-icon matTooltip="Add image"> image</mat-icon>
+                    <mat-icon matTooltip="Archive">archive</mat-icon>
+                    <mat-icon matTooltip="More">more_vert</mat-icon>
+                    <div fxLayout="end" fxFlex="20">
+                        <button style="margin-left:150px;" mat-button (click)="close()">close</button>
+                    </div>
+                </div>
+            </mat-card>
+        </form>
+    </div>
+    <app-get-all-notes > </app-get-all-notes>
+   
+</div>  

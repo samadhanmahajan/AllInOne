@@ -1,0 +1,165 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20%">
+    <mat-toolbar>
+        <div fxFlex="100">
+            <div fxLayout="row" fxFlex="15" fxLayoutGap="25%">
+                <div fxFlex="5">
+                    <button mat-icon-button (click)="sidenav.toggle()">
+                        <mat-icon matTooltip="menu">menu</mat-icon>
+                    </button>
+                </div>
+                <div fxFlex="5">
+                    <img src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png">
+                </div>
+                <div class="fundoo" fxFlex="5">
+                    <span style="margin-right: 8px">Fundoo Notes</span>
+                </div>
+            </div>
+
+            <div fxFlex="70" fxLayout="row">
+
+                <mat-card class="search-bar">
+                    <button mat-icon-button (click)="onSearch()">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                    <input class="search" (keyup)="onSearch($event)" matInput placeholder="Search"
+                        style="width: 450px;" autocomplete="off">
+                </mat-card>
+
+            </div>
+
+            <div fxFlex="35" fxLayout="row" fxLayoutGap="12%" style="margin-left: 100px; margin-top: 8px;">
+                <div fxFlex="7">
+                    <button mat-icon-button>
+                        <mat-icon matTooltip="Refresh">refresh</mat-icon>
+                    </button>
+
+                </div>
+                <div fxFlex="7">
+                    <button mat-icon-button (click)="gridList()">
+                        <mat-icon matTooltip="Grid_view" *ngIf="grid">view_module</mat-icon>
+                        <mat-icon matTooltip="List_view" *ngIf="!grid">view_agenda</mat-icon>
+                    </button>
+                </div>
+                <div fxFlex="7">
+                    <button mat-icon-button>
+                        <mat-icon matTooltip="settings">settings</mat-icon>
+                    </button>
+                </div>
+                <div fxFlex="7">
+                    <button mat-icon-button>
+                        <mat-icon matTooltip="app">apps</mat-icon>
+                    </button>
+                </div>
+                <div fxFlex="7">
+                    <!-- <button mat-icon-button (click)="Profile()">
+
+                        <mat-icon matTooltip="account" [matMenuTriggerFor]="more_option">
+                            account_circle
+                        </mat-icon>
+                    </button> -->
+                    <button mat-icon-button [matMenuTriggerFor]="accountmenu" matTooltip={{email}}>
+                    <img mat-card-avatar src="http://localhost:9090/User/getuploadedimage/{{email}}">
+                </button>
+                </div>
+            </div>
+        </div>
+    </mat-toolbar>
+
+</div>
+      <div>
+            <hr style="margin-top: 0px;">
+        </div>
+        <mat-sidenav-container class="example-container">
+
+            <mat-sidenav #sidenav class="example-sidenav" mode="side" class="mat-sidenav">
+                <mat-nav-list class="navigationlist">
+                    <mat-list>
+                        <div>
+                            <button style="width: 238px;border-radius: 20px" mat-button (click)="getNotes()">
+                                <mat-icon style="padding-right: 138px">lightbulb_outline</mat-icon>
+                                <span style="margin-right: 125px;margin-left: -106px">Notes</span>
+                            </button>
+                        </div>
+
+                        <div>
+                            <button mat-button style="width: 238px;border-radius: 20px" (click)="onReminder()">
+                                <mat-icon style="padding-right: 108px">notifications_none</mat-icon>
+                                <span style="margin-right: 80px;margin-left: -76px">Reminders</span>
+                            </button>
+                            <hr>
+                        </div>
+                        <div style="padding-left: 27px">
+                            <span>
+                                <h5>LABELS</h5>
+                            </span>
+                        </div>
+
+                        <div *ngFor="let item of labelList" fxlayout class="label">
+                            <button mat-button style="border-radius: 54px; width: 239px;"
+                                (click)="showLabelNotes(item)">
+                                <mat-icon style="padding-right: 70px" [matTooltip]="label"> label</mat-icon>
+                                <span style="margin-right: 84px;margin-left: -62px">{{item.labelName}}</span>
+                            </button>
+                        </div>
+
+                        <div>
+                            <button mat-button style="border-radius: 54px; width: 239px;" (click)="editLabel()">
+                                <mat-icon style="padding-right: 94px">edit</mat-icon>
+                                <span style="margin-right: 84px;margin-left: -62px"> Edit Labels</span>
+                            </button>
+
+                        </div>
+                        <hr>
+                        <div>
+                            <button mat-button style="border-radius: 20px;width: 239px" (click)="onArchive()">
+                                <mat-icon style="padding-right: 134px;">
+                                    archive
+                                </mat-icon>
+                                <span style="margin-right: 104px;margin-left: -96px">Archive</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button mat-button style="border-radius: 25px;width: 238px;" (click)="onDelete()">
+                                <mat-icon style="padding-right: 162px;">
+                                    delete
+                                </mat-icon>
+                                <span style="margin-right: 135px;
+                                margin-left: -122px;">Trash</span>
+                            </button>
+                        </div>
+                    </mat-list>
+                </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content class="content">
+                <router-outlet></router-outlet>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+        <div>
+            <mat-menu #more_option>
+                <button mat-icon mat-flat-button color="primary" (click)="onLogout()" class="button">
+                    Logout
+                </button>
+            </mat-menu>
+        </div>
+
+        <mat-menu #accountmenu="matMenu">
+            <!-- <mat-card> -->
+            <div fxLayout="column" fxLayoutGap="50px">
+        
+        
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="img1">
+                            <img mat-card-avatar src="http://localhost:9090/User/getuploadedimage/{{email}}">
+                        <button mat-icon mat-flat-button color="primary" (click)="profileDialog()" class="button">
+                            Change Pic
+                        </button>
+                    </div>
+                    <div>
+                        <mat-card-subtitle>{{emailId}}</mat-card-subtitle>
+                    </div>
+                    <button mat-icon mat-flat-button color="primary" (click)="onLogout()" class="button">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </mat-menu>

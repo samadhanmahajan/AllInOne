@@ -1,0 +1,71 @@
+<div class="main" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card class="maincard">
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <div>
+        <mat-card-title>
+          <h2>FundooNotes</h2>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <h2>Registration</h2>
+        </mat-card-subtitle>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="firstName" [formControl]="firstName"[(ngModel)]="register.firstName" required>
+          <mat-error *ngIf="emailId.invalid">please enter first name!!!</mat-error>
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="lastName" [formControl]="lastName" [(ngModel)]="register.lastName" required>
+          <mat-error *ngIf="emailId.invalid">please enter last Name!!!</mat-error>
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="emailId"[formControl]="emailId" [(ngModel)]="register.emailId"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+            <mat-error *ngIf="emailId.invalid">please enter valid emailID!!!</mat-error>
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>mob. number</mat-label>
+          <input matInput placeholder="mobileNum" [formControl]="mobileNum"  [(ngModel)]="register.mobileNum" pattern="[7-9][0-9]{9}"> 
+          <mat-error *ngIf="emailId.invalid">please enter valid mobile!!!</mat-error>
+          <mat-icon matSuffix>phone</mat-icon>
+
+        </mat-form-field>
+      </div>
+     
+      <div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Enter your password" [formControl]="password" [(ngModel)]="register.password"
+            [type]="hide ? 'password' : 'text'" pattern="((?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})">
+            <mat-error *ngIf="emailId.invalid">please enter valid password!!!</mat-error>
+
+          <mat-icon matSuffix (click)="hide= !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+        </mat-form-field>
+      </div>
+
+      <div>
+
+        <button style="margin-right: 45px" mat-flat-button color="primary" (click)="onRegister()">register</button>
+        <button style="margin-left: 44px" mat-flat-button color="primary" routerLink="/login">login</button>
+      </div>
+    </div>
+  </mat-card>
+
+
+</div>

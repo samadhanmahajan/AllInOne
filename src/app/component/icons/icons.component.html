@@ -1,0 +1,101 @@
+<div *ngFor="let label of noteLabelsList" fxLayout="row">
+    <p>{{label.labelName}}</p>
+    <button mat-button style="height: 0px;margin-left: -18px" (click)="removeLabel(label)">
+
+        <mat-icon style="margin-top: 13px;" matTooltip="clear">clear</mat-icon>
+
+    </button>
+
+</div>
+
+<div *ngFor="let item of collaborators" fxLayout="row" style="height: 20px">
+
+    <button mat-button style="height: 0px;margin-left: -18px" (click)="openDialog()">
+        <mat-icon style="margin-top: -48px;" matTooltip="remove {{item.emailId}}">account_circle</mat-icon>
+    </button>
+
+</div>
+
+<div style="height: 15px" *ngIf="noteInfo.remainder != null">
+        <p>{{noteInfo.remainder}}</p>
+        <button mat-button style="height: 0px;margin-left: -18px" (click)="removeReminder()">
+    
+            <mat-icon style="margin-top: -89px;margin-left: 111px;" matTooltip="clear">clear</mat-icon>
+    
+        </button>
+    
+    </div>
+
+<div fxLayout="row" fxLayoutAlign="start">
+
+    <button mat-icon-button [matMenuTriggerFor]="addReminder">
+        <mat-icon>add_alert</mat-icon>
+    </button>
+    <button mat-icon-button (click)="openDialog()">
+        <mat-icon>person_add</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onColor(noteColor)" [matMenuTriggerFor]="color">
+        <mat-icon>color_lens</mat-icon>
+    </button>
+    <button mat-icon-button>
+        <mat-icon>image</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onArchive()">
+        <mat-icon>archive</mat-icon>
+    </button>
+    <button mat-icon-button>
+        <mat-icon [matMenuTriggerFor]="more_option">more_vert</mat-icon>
+
+    </button>
+</div>
+<mat-menu #color="matMenu" [overlapTrigger]="false">
+    <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 3px" *ngFor="let color of colors">
+        <div *ngFor="let noteColor of color">
+            <button [ngStyle]="{ 'background-color': noteColor.colorCode }" (click)="onColor(noteColor.colorName)"
+                matTooltip="{{ noteColor.colorName }}" mat-mini-fab></button>
+        </div>
+    </div>
+</mat-menu>
+
+<mat-menu #more_option="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item (click)="onTrash()">
+
+        <span>Delete Note</span>
+    </button>
+
+    <button mat-menu-item [matMenuTriggerFor]="labelTrigger">
+
+        <span>Add Label</span>
+    </button>
+</mat-menu>
+<div>
+    <mat-menu #labelTrigger="matMenu">
+        <div>Label note</div>
+        <div *ngFor="let labels of labelsList">
+            <mat-checkbox class="addlabel" (click)="addLabeltoNote(labels)">
+                {{labels.labelName}}
+            </mat-checkbox>
+        </div>
+    </mat-menu>
+</div>
+
+<div>
+    <mat-menu #addReminder="matMenu">
+        <div>Add Reminder</div>
+
+        <mat-checkbox class="addlabel" (click)="addReminderToNote('tomorrow')">
+            tomorrow
+        </mat-checkbox>
+        <mat-checkbox class="addlabel" (click)="addReminderToNote('weekly')">
+            weekly
+        </mat-checkbox>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="date"  placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-menu-item (click)="onReminder()">
+            <span>submit</span>
+        </button>
+    </mat-menu>
+</div>

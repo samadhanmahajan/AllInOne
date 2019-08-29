@@ -1,0 +1,45 @@
+
+    <div class="mainCard" *ngFor="let item of searchNotes" fxLayoutGap="10px"   fxFlexAlign="center">
+            
+        <mat-card style="margin-left: 100px;"   [ngStyle]="{'background-color':item.colour}">
+           
+            <div class="apppin" (click)="pinNote(item)">
+                <span style="margin-left:90%">
+                 
+                  <mat-icon matTooltip="pinned" ><img src="../../../assets/unpin.svg"></mat-icon>
+                </span>
+              </div>
+            <div (click)="openDialog(item)">
+                <p>{{item.title}}</p>
+                <p> {{item.description}}</p>
+    
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start">
+                <app-icons [noteInfo]="item"> </app-icons>
+            </div>
+        </mat-card>
+    
+    </div>
+    
+    
+    <!-- <div class="mainCard" *ngFor="let item of noteList" fxLayoutGap="10px">
+            
+        <mat-card style="margin-left: 100px;"   [ngStyle]="{'background-color':item.colour}">
+            <div class="apppin" (click)="pinNote(item)">
+                <span style="margin-left:90%">
+                
+                  <mat-icon matTooltip="pinned" ><img src="../../../assets/pin.svg"></mat-icon>
+                </span>
+              </div>
+            <div (click)="openDialog(item)">
+                <p>{{item.title}}</p>
+                <p> {{item.description}}</p>
+    
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start">
+                <app-icons [noteInfo]="item"> </app-icons>
+            </div>
+        </mat-card>
+    </div>
+    
+     -->
